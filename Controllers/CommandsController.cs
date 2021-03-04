@@ -3,6 +3,7 @@ using AutoMapper;
 using Commander.Data.CommandRepo;
 using Commander.DTOs.CommandDTOs;
 using Commander.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 
@@ -24,8 +25,11 @@ namespace Commander.Controllers
 
         // GET api/commands
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public ActionResult<IEnumerable<CommandReadDTO>> GetAllCommands()
         {
+            // bool success;
+            // success = Request.Cookies.ContainsKey("X-Commander-Token");
             var commands = _commandRepository.GetAllCommands();
             return Ok(_mapper.Map<IEnumerable<CommandReadDTO>>(commands));
         }
@@ -33,6 +37,7 @@ namespace Commander.Controllers
         // GET api/commands/{id}
         // we give this method a name so we can use it elsewhere (in the create section to return the new object upon successful creation of items)
         [HttpGet("{id}", Name = "GetCommandById")]
+        [Authorize]
         public ActionResult<CommandReadDTO> GetCommandById(int id)
         {
             var command = _commandRepository.GetCommandById(id);

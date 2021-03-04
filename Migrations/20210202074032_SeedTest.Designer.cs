@@ -4,14 +4,16 @@ using Commander.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Commander.Migrations
 {
     [DbContext(typeof(CommanderContext))]
-    partial class CommanderContextModelSnapshot : ModelSnapshot
+    [Migration("20210202074032_SeedTest")]
+    partial class SeedTest
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -29,6 +31,9 @@ namespace Commander.Migrations
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DisplayName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
@@ -61,9 +66,6 @@ namespace Commander.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
 
-                    b.Property<string>("Role")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
@@ -85,6 +87,53 @@ namespace Commander.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "7cce3ae0-11f1-45b5-ae12-96966f8875af",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "b70f5d9a-4143-4d15-8906-ef5fe6a556e1",
+                            DisplayName = "BobTheSavage",
+                            Email = "bob@gmail.com",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            PasswordHash = "AQAAAAEAACcQAAAAEFHyrylkEDuulYPaVyNCg6DEL79NWoLI+PzDOMWCEYDoZ3D9LP/sY7TGfUZvIGjsXA==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "f704b867-ae1c-4ff4-b4c1-08bcfbb25dca",
+                            TwoFactorEnabled = false,
+                            UserName = "bob"
+                        },
+                        new
+                        {
+                            Id = "b2f6132f-e85d-41f8-8f0c-ff77ea1da591",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "58006cf5-162a-492e-a735-2eaa903e96fe",
+                            DisplayName = "AndyTheKind",
+                            Email = "andy@gmail.com",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            PasswordHash = "AQAAAAEAACcQAAAAEEebzD956/ilb48EqmnMEu2twszHAiwNry8ljQ38K0VME2MEX5H1USmU08mBbemTtA==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "7ad53ad6-d3ef-4004-a886-110125e097f1",
+                            TwoFactorEnabled = false,
+                            UserName = "andy"
+                        },
+                        new
+                        {
+                            Id = "ae83a9b8-63c4-427b-aa69-14c6029a174f",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "46f433b8-06be-4e6c-914d-ae836c553e35",
+                            DisplayName = "GeorgeTheWise",
+                            Email = "georige@gmail.com",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            PasswordHash = "AQAAAAEAACcQAAAAEBdK1jFiPAlPsM7EZBjd2Xr+nhwmoGfqxrbyMBfyBMiKVCtjDWnGSnn4NRzD2dpvQA==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "2b13eab9-d099-4cdb-97e1-5f3af4b09648",
+                            TwoFactorEnabled = false,
+                            UserName = "george"
+                        });
                 });
 
             modelBuilder.Entity("Commander.Models.Command", b =>
